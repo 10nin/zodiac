@@ -10,20 +10,22 @@ typedef struct {
 } ZodiacInfo_t;
 typedef int (*ZODIAC_FUNC)(int,int);
 
+enum ZodiacName_t {
+	Aries = 1,
+	Taurus,
+	Gemini,
+	Cancer,
+	Leo,
+	Virgo,
+	Libra,
+	Scorpio,
+	Sagittarius,
+	Capricorn,
+	Aquarius,
+	Pisces
+};
 int zodiac(int month, int day);
-int is_aries(int month, int day);
-int is_taurus(int month, int day);
-int is_gemini(int month, int day);
-int is_cancer(int month, int day);
-int is_leo(int month, int day);
-int is_virgo(int month, int day);
-int is_libra(int month, int day);
-int is_scorpio(int month, int day);
-int is_sagittarius(int month, int day);
-int is_capricorn(int month, int day);
-int is_aquarius(int month, int day);
-int is_pisces(int month, int day);
-int _is_zodiac_generic(int month, int day, ZodiacInfo_t* zod);
+int is_zodiac(int month, int day, enum ZodiacName_t zodiac_name);
 
 /* for debug */
 #define ERR_MONTH      -1
