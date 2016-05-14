@@ -24,7 +24,7 @@ int zodiac(int month, int day) {
 	return 0;
 }
 
-int _is_zodiac_generic(int month, int day, int from_month, int from_day, int to_month, int to_day) {
+int _is_zodiac_generic(int month, int day, ZodiacInfo_t* zod) {
 	int day_max[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
         /* input validation */
@@ -34,68 +34,80 @@ int _is_zodiac_generic(int month, int day, int from_month, int from_day, int to_
 	if( day < 1 || day_max[month] < day ) {
 		return ERR_DAY;
 	}	
-	if( from_month < 1 || 12 < from_month ) {
+	if( zod->from_month < 1 || 12 < zod->from_month ) {
 		return ERR_FROM_MONTH;
 	}
-	if( from_day < 1 || day_max[from_month] < from_day ) {
+	if( zod->from_day < 1 || day_max[zod->from_month] < zod->from_day ) {
 		return ERR_FROM_DAY;
 	}
-	if( to_month < 1 || 12 < to_month) {
+	if( zod->to_month < 1 || 12 < zod->to_month) {
 		return ERR_TO_MONTH;
 	}
-	if( to_day < 1 || day_max[to_month] < to_day ) {
+	if( zod->to_day < 1 || day_max[zod->to_month] < zod->to_day ) {
 		return ERR_TO_DAY;
 	}
 
 	/* main logic */
-	if( month == from_month ) {
+	if( month == zod->from_month ) {
 		/* from day .. last day => true */
-		if(from_day <= day && day <= day_max[month]) {
+		if(zod->from_day <= day && day <= day_max[month]) {
 			return 1;
 		}
 	}
-	if( month == to_month) {
+	if( month == zod->to_month) {
 		/* first day .. to day => true */
-		if(1 <= day && day <= to_day) {
+		if(1 <= day && day <= zod->to_day) {
 			return 1;
 		}
 	}
 	return 0;
 }
 int is_aries(int month, int day) {
-	return _is_zodiac_generic(month, day, 3, 21, 4, 20);
+	ZodiacInfo_t z = {3, 21, 4, 20};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_taurus(int month, int day) {
-	return _is_zodiac_generic(month, day, 4, 21, 5, 21);
+	ZodiacInfo_t z = {4, 21, 5, 21};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_gemini(int month, int day) {
-	return _is_zodiac_generic(month, day, 5, 22, 6, 21);
+	ZodiacInfo_t z = {5, 22, 6, 21};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_cancer(int month, int day) {
-	return _is_zodiac_generic(month, day, 6, 22, 7, 23);
+	ZodiacInfo_t z = {6, 22, 7, 23};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_leo(int month, int day) {
-	return _is_zodiac_generic(month, day, 7, 24, 8, 23);
+	ZodiacInfo_t z = {7, 24, 8, 23};
+	return _is_zodiac_generic(month, day, &z);
 
 }
 int is_virgo(int month, int day) {
-	return _is_zodiac_generic(month, day, 8, 24, 9, 23);
+	ZodiacInfo_t z = {8, 24, 9, 23};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_libra(int month, int day) {
-	return _is_zodiac_generic(month, day, 9, 24, 10, 23);
+	ZodiacInfo_t z = {9, 24, 10, 23};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_scorpio(int month, int day) {
-	return _is_zodiac_generic(month, day, 10, 24, 11, 22);
+	ZodiacInfo_t z = {10, 24, 11, 22};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_sagittarius(int month, int day) {
-	return _is_zodiac_generic(month, day, 11, 23, 12, 22);
+	ZodiacInfo_t z = {11, 23, 12, 22};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_capricorn(int month, int day) {
-	return _is_zodiac_generic(month, day, 12, 23, 1, 20);
+	ZodiacInfo_t z = {12, 23, 1, 20};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_aquarius(int month, int day) {
-	return _is_zodiac_generic(month, day, 1, 21, 2, 19);
+	ZodiacInfo_t z = {1, 21, 2, 19};
+	return _is_zodiac_generic(month, day, &z);
 }
 int is_pisces(int month, int day) {
-	return _is_zodiac_generic(month, day, 2, 20, 3, 20);
+	ZodiacInfo_t z = {2, 20, 3, 20};
+	return _is_zodiac_generic(month, day, &z);
 }
