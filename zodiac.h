@@ -25,7 +25,7 @@ enum ZodiacName_t {
 	Pisces
 };
 int zodiac(int month, int day);
-int is_zodiac(int month, int day, enum ZodiacName_t zodiac_name);
+bool is_zodiac(int month, int day, enum ZodiacName_t zodiac_name);
 
 /* for debug */
 #define ERR_MONTH      -1
