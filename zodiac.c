@@ -4,8 +4,15 @@
 int main(void) {
 	char *_zodiac_name[] = {"NO_EXISTS", "Aries", "Taurus", "Gemini", "Cancer",
 				"Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
-	int _zod =  zodiac(2, 21);
-	printf("%s\n", _zodiac_name[_zod]);
+	int _zod = 0;
+
+	int m, d;
+	for(m=1; m<13; m++) {
+		for(d=1; d<32; d++) {
+			_zod =  zodiac(m, d);
+			printf("%02d/%02d => %s\n", m, d, _zodiac_name[_zod]);
+		}
+	}
 	return 0;
 }
 
