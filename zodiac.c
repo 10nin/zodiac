@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 #include "zodiac.h"
 
 int main(void) {
@@ -42,9 +43,12 @@ int is_zodiac(int month, int day, enum ZodiacName_t zodiac_name) {
 		{12, 23, 1, 20}, /* Capricorn */
 		{1, 21, 2, 19}, /* Aquarius */
 		{2, 20, 3, 20} /* Pisces */
-	};
-	ZodiacInfo_t z = _zodiacs[zodiac_name];
-
+	};	
+	ZodiacInfo_t z;
+	
+	assert( (Aries <= zodiac_name && zodiac_name <= Pisces) );
+	z = _zodiacs[zodiac_name];
+	
         /* input validation */
 	if( month < 1 || 12 < month ) {
 		return ERR_MONTH;
